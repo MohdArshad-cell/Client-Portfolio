@@ -1,5 +1,5 @@
 "use client";
-import { ReactLenis } from '@studio-freight/lenis'
+import { ReactLenis } from 'lenis/react'; // Ab ye correctly export hoga
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   return (
