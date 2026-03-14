@@ -1,85 +1,78 @@
 # Aman Architects Portfolio
 
-![Banner](https://socialify.git.ci/username/repo/network?theme=Dark)
+![Banner](https://socialify.git.ci/repo_path/network?theme=Dark)
 
-[![Node.js](https://img.shields.io/badge/Node.js-6.17.1-brightgreen)](https://nodejs.org/) [![React](https://img.shields.io/badge/React-18.2.0-blue)](https://reactjs.org/) [![Next.js](https://img.shields.io/badge/Next.js-13.4.19-black)](https://nextjs.org/) [![TypeScript](https://img.shields.io/badge/TypeScript-5.1.6-blue)](https://www.typescriptlang.org/) [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.3.2-purple)](https://tailwindcss.com/) [![Framer Motion](https://img.shields.io/badge/Framer%20Motion-10.16.0-cyan)](https://www.framer.com/motion/) [![Lenis](https://img.shields.io/badge/Lenis-1.0.10-orange)](https://github.com/studio-freight/lenis)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs)](https://nodejs.org/) [![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react)](https://reactjs.org/) [![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs)](https://nextjs.org/) [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript)](https://www.typescriptlang.org/) [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=flat-square&logo=tailwindcss)](https://tailwindcss.com/) [![Framer Motion](https://img.shields.io/badge/Framer%20Motion-0055FF?style=flat-square&logo=framer)](https://www.framer.com/motion/) [![Lenis](https://img.shields.io/badge/Lenis-f0f0f0?style=flat-square)](https://github.com/studio-frek/lenis) [![ESLint](https://img.shields.io/badge/ESLint-4B3263?style=flat-square&logo=eslint)](https://eslint.org/)
 
 ## Executive Summary
 
-This project is a sophisticated frontend application built with **Node.js, React, and Next.js**, designed to showcase architectural portfolios with a focus on immersive user experiences. It leverages advanced frontend techniques and modern JavaScript/TypeScript to deliver a dynamic and visually engaging platform.
+This project is a meticulously crafted frontend portfolio application, engineered with **Node.js** and **TypeScript**, leveraging the power of **Next.js** and **React**. It is designed to showcase architectural projects with an emphasis on immersive user experiences and modern design principles. The application utilizes advanced animation libraries and smooth scrolling techniques to create an engaging and visually rich presentation.
 
-The application effectively communicates the studio's expertise, highlighting achievements such as **50+ Projects Completed** and **10+ Years of Experience**. It aims to attract and engage potential clients by presenting a compelling narrative of design philosophy and project execution, translating into increased client acquisition and brand recognition for Aman Architects.
+The portfolio effectively communicates the studio's core values and achievements, highlighting a portfolio of **50+ projects completed** and **12 awards won** over **10 years of experience**. The use of dynamic visuals and clear calls to action aims to drive client engagement and inquiries, positioning Aman Architects as a leader in innovative and functional design.
 
 ## Architecture & Tech Stack
 
-| Technology      | Version   | Key Responsibility                                           |
-| :-------------- | :-------- | :------------------------------------------------------------ |
-| Node.js         | 6.17.1    | Runtime environment for server-side logic and build tooling   |
-| React           | 18.2.0    | Component-based UI library for building interactive interfaces |
-| Next.js         | 13.4.19   | React framework for server-side rendering, static generation, and routing |
-| TypeScript      | 5.1.6     | Static typing for enhanced code quality and maintainability   |
-| Tailwind CSS    | 3.3.2     | Utility-first CSS framework for rapid UI development          |
-| Framer Motion   | 10.16.0   | Animation and gesture library for creating engaging motion effects |
-| Lenis           | 1.0.10    | Smooth scrolling library for enhanced user experience         |
-| ESLint          | N/A       | Code linting for maintaining code style and quality           |
-| @types/node     | N/A       | TypeScript definitions for Node.js                            |
-| @types/react    | N/A       | TypeScript definitions for React                              |
-| @types/react-dom| N/A       | TypeScript definitions for React DOM                          |
-| PostCSS         | N/A       | CSS transformation tool, often used with Tailwind CSS         |
+| Technology     | Version | Key Responsibility                                                                     |
+| :------------- | :------ | :-------------------------------------------------------------------------------------- |
+| Node.js        | -       | Runtime environment for the JavaScript/TypeScript application.                          |
+| React          | -       | Component-based UI library for building interactive interfaces.                         |
+| Next.js        | -       | React framework for server-side rendering, static site generation, and routing.         |
+| TypeScript     | -       | Static typing for enhanced code quality, maintainability, and developer productivity.   |
+| Framer Motion  | -       | Animation library for orchestrating complex layout transitions and micro-interactions. |
+| Lenis          | -       | Advanced smooth scrolling library for an immersive and fluid user experience.         |
+| Tailwind CSS   | -       | Utility-first CSS framework for rapid UI development and consistent styling.            |
+| ESLint         | -       | Code linting utility for maintaining code style and catching potential errors.          |
 
 ## System Signatures
 
-*   **`RootLayout` (Next.js App Router):** Orchestrates the foundational structure of the application, including global CSS, meta tags, and provider configurations, ensuring a consistent layout across all pages.
-*   **`Home` (Next.js Page):** Serves as the main entry point for the application, rendering the primary content and sections of the portfolio.
-*   **`Magnetic` Component (Framer Motion):** Implements a magnetic-like effect on child elements, responding dynamically to mouse movement for an interactive and captivating user experience.
-*   **`handleMouseMove` (within `Magnetic` & `Hero`):** A utility function likely used to track cursor position, enabling interactive visual feedback and animations.
-*   **`Navbar` Component:** Manages navigation elements, including responsiveness and potentially scroll-based effects to enhance user interaction.
-*   **`handleScroll` (within `Navbar`):** Captures scroll events to trigger visual changes in the navigation bar, such as background color or element visibility.
-*   **`ProjectCard` Component:** Encapsulates the display of individual project details, likely featuring images, titles, and categories.
-*   **`SmoothScroll` Component (Lenis Integration):** Integrates the Lenis library to provide a highly performant and smooth scrolling experience throughout the application.
-*   **`About`, `Contact`, `Hero`, `Projects`, `Services` Components:** These components represent distinct sections of the portfolio, each dedicated to presenting specific information and content in a structured manner.
-*   **`SiteConfig` (Constants):** Centralizes key application-wide configurations such as site name, tagline, contact details, and navigation links, promoting maintainability and easy updates.
-*   **`NavLinks` (Constants):** Defines the navigation structure for the application, mapping display names to their corresponding routes.
-*   **`ProjectsData` (Constants):** A data structure containing detailed information for each architectural project, including titles, categories, and image URLs.
-*   **`AboutData` (Constants):** Holds content related to the studio's history, mission, statistics, and a representative image.
-*   **`ServicesData` (Constants):** Outlines the various services offered by the architectural firm, with descriptions for each.
-*   **`ContactData` (Constants):** Stores essential contact information such as address and email.
+This project utilizes several key components and functions that contribute to its sophisticated user experience:
+
+*   **`RootLayout` (src/app/layout.tsx):** The fundamental layout component in Next.js, responsible for establishing the global structure, meta tags, and essential providers for the entire application.
+*   **`Home` (src/app/page.tsx):** The main page component, orchestrating the rendering of various sections and acting as the primary entry point for the portfolio's content.
+*   **`Magnetic` (src/components/Magnetic.tsx):** Implements a magnetic hover effect on elements, providing a subtle yet engaging interactive feedback loop for users. This is likely powered by event listeners and `transform` CSS properties.
+*   **`handleMouseMove` (src/components/Magnetic.tsx & src/sections/Hero.tsx):** A utility function likely used to track mouse coordinates and translate them into animation parameters for effects like magnetic hovering or parallax.
+*   **`Navbar` (src/components/Navbar.tsx):** The primary navigation component, handling user interface elements for site navigation and potentially scroll-linked animations or states.
+*   **`handleScroll` (src/components/Navbar.tsx):** A function designed to react to user scroll events, likely used to trigger visual changes in the Navbar (e.g., background changes, active link highlighting).
+*   **`ProjectCard` (src/components/ProjectCard.tsx):** A reusable component for displaying individual project information, including titles, categories, and images.
+*   **`SmoothScroll` (src/components/SmoothScroll.tsx):** Integrates the `lenis` library to provide a custom, performant, and highly customizable smooth scrolling experience throughout the application.
+*   **`About` (src/sections/About.tsx), `Contact` (src/sections/Contact.tsx), `Hero` (src/sections/Hero.tsx), `Projects` (src/sections/Projects.tsx), `Services` (src/sections/Services.tsx):** These components represent distinct sections of the portfolio, each responsible for rendering and managing its specific content and related logic.
 
 ## Directory Blueprint
 
 ```
 .
-├── next.config.ts             # Next.js configuration file
-├── package.json
-├── postcss.config.js
-├── tailwind.config.ts
-├── tsconfig.json
-├── README.md
-└── src
-    ├── app                     # Next.js App Router: Root layout, pages, API routes
+├── next.config.ts              # Next.js application configuration
+├── package.json                # Project dependencies and scripts
+├── postcss.config.js           # PostCSS configuration for Tailwind CSS
+├── tailwind.config.ts          # Tailwind CSS configuration
+├── tsconfig.json               # TypeScript compiler options
+└── src                         # Source code directory
+    ├── app                     # Next.js App Router directory
+    │   ├── favicon.ico         # Application favicon
+    │   ├── globals.css         # Global CSS styles
     │   ├── layout.tsx          # Root layout component
     │   └── page.tsx            # Home page component
     ├── components              # Reusable UI components
-    │   ├── Magnetic.tsx        # Interactive magnetic effect component
+    │   ├── Magnetic.tsx        # Component for magnetic hover effects
     │   ├── Navbar.tsx          # Navigation bar component
-    │   ├── ProjectCard.tsx     # Component for displaying project details
-    │   └── SmoothScroll.tsx    # Smooth scrolling integration component
-    ├── constants               # Application-wide constants and configuration
-    │   └── index.ts            # Exports for site configuration, data, and links
-    └── sections                # Components representing distinct page sections
-        ├── About.tsx           # About Us section
-        ├── Contact.tsx         # Contact information section
-        ├── Hero.tsx            # Hero/Landing section
-        ├── Projects.tsx        # Projects showcase section
-        └── Services.tsx        # Services offered section
+    │   ├── ProjectCard.tsx     # Component for displaying project cards
+    │   └── SmoothScroll.tsx    # Component for implementing smooth scrolling
+    ├── constants               # Static configuration data
+    │   └── index.ts            # Exports for site configuration, nav links, etc.
+    └── sections                # Page-specific sections/modules
+        ├── About.tsx           # About section component
+        ├── Contact.tsx         # Contact section component
+        ├── Hero.tsx            # Hero/banner section component
+        ├── Projects.tsx        # Projects showcase section component
+        └── Services.tsx        # Services offered section component
 ```
 
 ## Deployment & Operation
 
 ### Prerequisites
 
-*   Node.js (version specified in stack, or latest LTS)
-*   npm, yarn, or pnpm package manager
+*   Node.js (LTS version recommended)
+*   npm, Yarn, or pnpm package manager
 
 ### Installation
 
@@ -87,7 +80,7 @@ The application effectively communicates the studio's expertise, highlighting ac
 # Using npm
 npm install
 
-# Using yarn
+# Using Yarn
 yarn install
 
 # Using pnpm
@@ -100,12 +93,14 @@ pnpm install
 # Using npm
 npm run dev
 
-# Using yarn
+# Using Yarn
 yarn dev
 
 # Using pnpm
 pnpm dev
 ```
+
+This command will start the development server, typically at `http://localhost:3000`.
 
 ### Production Build
 
@@ -113,33 +108,38 @@ pnpm dev
 # Using npm
 npm run build
 
-# Using yarn
+# Using Yarn
 yarn build
 
 # Using pnpm
 pnpm build
 ```
 
-### Preview Production Build
+This command compiles and optimizes the application for production.
+
+### Start Production Server
 
 ```bash
 # Using npm
-npm run preview
+npm run start
 
-# Using yarn
-yarn preview
+# Using Yarn
+yarn start
 
 # Using pnpm
-pnpm preview
+pnpm start
 ```
+
+This command serves the production build of the application.
 
 ## Acknowledgements & Contact
 
-This project is a testament to modern frontend development practices, aiming to provide an exceptional user experience for showcasing architectural brilliance.
+This project was built with meticulous attention to detail and a focus on creating an exceptional user experience.
 
-📧 **Email:** contact@amanarchitects.com
+📧 **Email:** `contact@amanarchitects.com`
+📱 **WhatsApp:** `+919876543210`
 📍 **Location:** Lucknow, Uttar Pradesh, India
 
-## License
+### License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+This project is licensed under the MIT License.
