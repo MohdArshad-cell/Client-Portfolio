@@ -69,14 +69,17 @@ const Hero = () => {
 
       {/* BACKGROUND LAYER 02: Elite Interactive Blueprint Grid */}
       {/* Instead of just a static grid, this moves with your mouse. [cite: 2025-10-20] */}
-      <motion.div 
-        style={{ x: blueprintX, y: blueprintY, opacity: 0.15 }}
-        className="absolute inset-0 z-10 opacity-20 pointer-events-none" 
-        style={{ 
-          backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', 
-          backgroundSize: '60px 60px' 
-        }}
-      />
+      {/* BACKGROUND LAYER 02: Elite Interactive Blueprint Grid */}
+<motion.div 
+  className="absolute inset-0 z-10 pointer-events-none" 
+  style={{ 
+    x: blueprintX, 
+    y: blueprintY, 
+    opacity: 0.15, // Dhyan de: Maine opacity yahan merge kar di hai
+    backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', 
+    backgroundSize: '60px 60px' 
+  }}
+/>
       {/* Moving dynamic crosshair guides [cite: 2025-10-20] */}
       <motion.div style={{ x: springX, y: springY }} className="absolute inset-0 z-10 pointer-events-none opacity-5">
         <div className="absolute top-1/2 left-0 w-full h-[1px] bg-white" />

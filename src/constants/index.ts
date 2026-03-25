@@ -4,6 +4,7 @@ export interface SiteConfigType {
   tagline: string;
   email: string;
   whatsapp: string;
+  location: string; // Ye line add kar
 }
 
 export interface NavLinkType {
@@ -21,6 +22,7 @@ export const SiteConfig: SiteConfigType = {
   tagline: "Designing Spaces, Defining Lifestyles.",
   email: "aman@example.com",
   whatsapp: "+919876543210",
+  location: "Lucknow, Uttar Pradesh",
 };
 
 export const NavLinks: NavLinkType[] = [
