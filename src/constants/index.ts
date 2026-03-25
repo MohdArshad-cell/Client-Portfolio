@@ -66,7 +66,7 @@ export const ProjectsData = [
     id: 4,
     title: "Minimalist Retreat",
     category: "Landscape",
-    image: "https://images.unsplash.com/photo-1518005020951-ecc8493662cf?q=80&w=1992",
+    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2070",
     year: "2022",
     location: "Rishikesh, Uttarakhand",
     description: "A serene getaway designed around silence and shadow, focusing on local stone and traditional craftsmanship.",

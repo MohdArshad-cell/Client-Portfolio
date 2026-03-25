@@ -36,6 +36,7 @@ const Projects = () => {
                 src={project.image}
                 alt={project.title}
                 fill
+                sizes="(max-width: 768px) 100vw, 500px"
                 className="object-cover grayscale transition-all duration-700 group-hover:grayscale-0 group-hover:scale-110"
               />
               
