@@ -2,6 +2,7 @@
 import React, { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ProjectProps {
   id: number;
@@ -10,10 +11,10 @@ interface ProjectProps {
   image: string;
 }
 
-const ProjectCard = ({ title, category, image }: ProjectProps) => {
+// 1. Destructure 'id' from props
+const ProjectCard = ({ id, title, category, image }: ProjectProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Mouse tracking logic for "Empire-Grade" parallax
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -44,49 +45,48 @@ const ProjectCard = ({ title, category, image }: ProjectProps) => {
   };
 
   return (
-    <motion.div
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      className="group relative w-full aspect-[4/5] bg-gray-100 overflow-hidden cursor-pointer"
-    >
-      {/* Background Image with Hover Scale */}
-      <motion.div 
-        style={{ transformStyle: "preserve-3d" }}
-        className="absolute inset-0 transition-transform duration-700 group-hover:scale-110"
+    // 2. Wrap the card with Link for dynamic routing
+    <Link href={`/project/${id}`}>
+      <motion.div
+        ref={containerRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+        className="group relative w-full aspect-[4/5] bg-gray-100 overflow-hidden cursor-pointer"
       >
-        <Image
-          src={image}
-          alt={title}
-          fill
-          className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-        />
-        {/* Shadow Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      </motion.div>
+        <motion.div 
+          style={{ transformStyle: "preserve-3d" }}
+          className="absolute inset-0 transition-transform duration-700 group-hover:scale-110"
+        >
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        </motion.div>
 
-      {/* Floating Meta Data */}
-      <div className="absolute bottom-10 left-10 z-20 translate-z-20">
-        <motion.p 
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 0.6, y: 0 }}
-          className="text-[10px] uppercase tracking-[0.4em] text-white mb-2"
-        >
-          {category}
-        </motion.p>
-        <motion.h3 
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          className="text-2xl md:text-3xl font-light text-white uppercase tracking-tighter"
-        >
-          {title}
-        </motion.h3>
-      </div>
-      
-      {/* Corner Accent Detail */}
-      <div className="absolute top-10 right-10 w-8 h-8 border-t border-r border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-500" />
-    </motion.div>
+        <div className="absolute bottom-10 left-10 z-20 translate-z-20">
+          <motion.p 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 0.6, y: 0 }}
+            className="text-[10px] uppercase tracking-[0.4em] text-white mb-2"
+          >
+            {category}
+          </motion.p>
+          <motion.h3 
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="text-2xl md:text-3xl font-light text-white uppercase tracking-tighter"
+          >
+            {title}
+          </motion.h3>
+        </div>
+        
+        <div className="absolute top-10 right-10 w-8 h-8 border-t border-r border-white/20 opacity-0 group-hover:opacity-100 transition-all duration-500" />
+      </motion.div>
+    </Link>
   );
 };
 
