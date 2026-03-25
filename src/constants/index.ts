@@ -1,16 +1,35 @@
-export const SiteConfig = {
+// Define Interfaces so TypeScript doesn't lose its mind
+export interface SiteConfigType {
+  name: string;
+  tagline: string;
+  email: string;
+  whatsapp: string;
+}
+
+export interface NavLinkType {
+  name: string;
+  href: string;
+}
+
+export interface SocialLinkType {
+  platform: string;
+  url: string;
+}
+
+export const SiteConfig: SiteConfigType = {
   name: "Aman Architects",
   tagline: "Designing Spaces, Defining Lifestyles.",
   email: "aman@example.com",
   whatsapp: "+919876543210",
 };
 
-export const NavLinks = [
+export const NavLinks: NavLinkType[] = [
   { name: "Home", href: "/" },
   { name: "Projects", href: "#projects" },
   { name: "About", href: "#about" },
   { name: "Contact", href: "#contact" },
 ];
+
 
 export const ProjectsData = [
   {
@@ -41,14 +60,21 @@ export const ProjectsData = [
 
 export const AboutData = {
   title: "Design with Purpose",
-  description: "At Aman Architects, we believe that architecture is not just about building structures; it's about crafting environments that inspire. With over a decade of experience, our studio focuses on the intersection of modern aesthetics and functional sustainability.",
-  stats: [
-    { label: "Projects Completed", value: "50+" },
-    { label: "Years Experience", value: "10" },
-    { label: "Awards Won", value: "12" },
-  ],
-  image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1974", // Aman ki B&W photo yahan aayegi
+  description: "At Aman Architects, we believe that architecture is not just about building structures; it's about crafting environments that inspire.",
+  // Isko object hi rakho, array nahi!
+  stats: {
+    experience: 10,
+    projects: 50,
+  },
+  image: "/hero-arch.jpg", 
 };
+
+// Icons ke liye casing check kar lo yahan
+export const SocialLinks = [
+  { platform: "LinkedIn", url: "#" },
+  { platform: "Instagram", url: "#" },
+  { platform: "GitHub", url: "#" },
+];
 
 export const ServicesData = [
   {
@@ -70,7 +96,7 @@ export const ServicesData = [
 ];
 
 export const ContactData = {
-  address: "Lucknow, Uttar Pradesh, India", //
+  address: "Lucknow, Uttar Pradesh, India",
   phone: "+91 98765 43210",
   email: "contact@amanarchitects.com",
 };

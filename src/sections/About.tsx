@@ -81,7 +81,7 @@ const About = () => {
                 Our Mission
               </p>
               <p className="text-sm font-light italic leading-relaxed">
-                "Transforming spaces into timeless experiences through precision and art."
+                Transforming spaces into timeless experiences through precision and art.
               </p>
             </div>
           </motion.div>
