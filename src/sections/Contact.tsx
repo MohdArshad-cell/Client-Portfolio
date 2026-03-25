@@ -89,67 +89,77 @@ const Contact = () => {
           </motion.div>
 
           {/* RIGHT: Inquiry Input Module */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-7 bg-white/[0.03] border border-white/5 p-8 md:p-16 relative overflow-hidden"
-          >
-            {/* Background Accent */}
-            <div className="absolute top-0 right-0 p-4 opacity-5">
-              <Globe size={120} strokeWidth={0.5} />
-            </div>
+          {/* RIGHT: Inquiry Input Module */}
+<motion.div
+  initial={{ opacity: 0, x: 30 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8 }}
+  className="lg:col-span-7 bg-white/[0.04] border border-white/10 p-8 md:p-16 relative overflow-hidden"
+>
+  {/* Background Accent - Slightly more visible */}
+  <div className="absolute top-0 right-0 p-4 opacity-10">
+    <Globe size={120} strokeWidth={0.5} />
+  </div>
 
-            <form className="space-y-12 relative z-10">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div className="group flex flex-col gap-3">
-                  <label className="text-[9px] uppercase tracking-[0.4em] text-white/20 group-focus-within:text-white/60 transition-colors">Client_Identity</label>
-                  <input 
-                    type="text" 
-                    placeholder="ENTER NAME" 
-                    className="bg-transparent border-b border-white/10 py-4 text-sm focus:outline-none focus:border-white transition-colors placeholder:text-white/10 font-light"
-                  />
-                </div>
-                <div className="group flex flex-col gap-3">
-                  <label className="text-[9px] uppercase tracking-[0.4em] text-white/20 group-focus-within:text-white/60 transition-colors">Digital_Address</label>
-                  <input 
-                    type="email" 
-                    placeholder="EMAIL@DOMAIN.COM" 
-                    className="bg-transparent border-b border-white/10 py-4 text-sm focus:outline-none focus:border-white transition-colors placeholder:text-white/10 font-light"
-                  />
-                </div>
-              </div>
+  <form className="space-y-12 relative z-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div className="group flex flex-col gap-3">
+        {/* Label opacity increased to 50% for readability */}
+        <label className="text-[9px] uppercase tracking-[0.4em] text-white/50 group-focus-within:text-white transition-colors">
+          Client_Identity
+        </label>
+        <input 
+          type="text" 
+          placeholder="ENTER NAME" 
+          className="bg-transparent border-b border-white/20 py-4 text-sm text-white focus:outline-none focus:border-white transition-colors placeholder:text-white/30 font-light"
+        />
+      </div>
+      <div className="group flex flex-col gap-3">
+        <label className="text-[9px] uppercase tracking-[0.4em] text-white/50 group-focus-within:text-white transition-colors">
+          Digital_Address
+        </label>
+        <input 
+          type="email" 
+          placeholder="EMAIL@DOMAIN.COM" 
+          className="bg-transparent border-b border-white/20 py-4 text-sm text-white focus:outline-none focus:border-white transition-colors placeholder:text-white/30 font-light"
+        />
+      </div>
+    </div>
 
-              <div className="group flex flex-col gap-3">
-                <label className="text-[9px] uppercase tracking-[0.4em] text-white/20 group-focus-within:text-white/60 transition-colors">Project_Classification</label>
-                <select className="bg-transparent border-b border-white/10 py-4 text-sm focus:outline-none focus:border-white transition-colors appearance-none cursor-pointer font-light text-white/40">
-                  <option className="bg-[#050505]">RESIDENTIAL_ARCH</option>
-                  <option className="bg-[#050505]">COMMERCIAL_STRUCTURE</option>
-                  <option className="bg-[#050505]">INTERIOR_SYSTEMS</option>
-                  <option className="bg-[#050505]">URBAN_PLANNING</option>
-                </select>
-              </div>
+    <div className="group flex flex-col gap-3">
+      <label className="text-[9px] uppercase tracking-[0.4em] text-white/50 group-focus-within:text-white transition-colors">
+        Project_Classification
+      </label>
+      <select className="bg-transparent border-b border-white/20 py-4 text-sm focus:outline-none focus:border-white transition-colors appearance-none cursor-pointer font-light text-white/60">
+        <option className="bg-[#0b0b0b]">RESIDENTIAL_ARCH</option>
+        <option className="bg-[#0b0b0b]">COMMERCIAL_STRUCTURE</option>
+        <option className="bg-[#0b0b0b]">INTERIOR_SYSTEMS</option>
+        <option className="bg-[#0b0b0b]">URBAN_PLANNING</option>
+      </select>
+    </div>
 
-              <div className="group flex flex-col gap-3">
-                <label className="text-[9px] uppercase tracking-[0.4em] text-white/20 group-focus-within:text-white/60 transition-colors">Project_Brief</label>
-                <textarea 
-                  rows={4} 
-                  placeholder="DESCRIBE THE VISION..." 
-                  className="bg-transparent border-b border-white/10 py-4 text-sm focus:outline-none focus:border-white transition-colors resize-none placeholder:text-white/10 font-light"
-                />
-              </div>
+    <div className="group flex flex-col gap-3">
+      <label className="text-[9px] uppercase tracking-[0.4em] text-white/50 group-focus-within:text-white transition-colors">
+        Project_Brief
+      </label>
+      <textarea 
+        rows={4} 
+        placeholder="DESCRIBE THE VISION..." 
+        className="bg-transparent border-b border-white/20 py-4 text-sm text-white focus:outline-none focus:border-white transition-colors resize-none placeholder:text-white/30 font-light"
+      />
+    </div>
 
-              <button className="relative w-full group overflow-hidden border border-white/10 py-6 transition-all duration-500 hover:border-white">
-                <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
-                <div className="relative z-10 flex items-center justify-center gap-4 group-hover:text-black transition-colors">
-                  <span className="uppercase tracking-[0.5em] text-[10px] font-bold">Transmit Inquiry</span>
-                  <ArrowRight size={16} className="-rotate-45 group-hover:rotate-0 transition-transform duration-500" />
-                </div>
-              </button>
-            </form>
-          </motion.div>
-
+    {/* Transmit Button - Increased contrast */}
+    <button className="relative w-full group overflow-hidden border border-white/20 py-6 transition-all duration-500 hover:border-white">
+      <div className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+      <div className="relative z-10 flex items-center justify-center gap-4 group-hover:text-black transition-colors">
+        <span className="uppercase tracking-[0.5em] text-[10px] font-bold">Transmit Inquiry</span>
+        <ArrowRight size={16} className="-rotate-45 group-hover:rotate-0 transition-transform duration-500" />
+      </div>
+    </button>
+  </form>
+</motion.div>
         </div>
 
         {/* Technical Footer Readout [cite: 2025-10-20] */}
