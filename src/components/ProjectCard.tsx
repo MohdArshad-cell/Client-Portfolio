@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "next/link"; //
 
 interface ProjectProps {
   id: number;
@@ -11,7 +11,7 @@ interface ProjectProps {
   image: string;
 }
 
-// 1. Destructure 'id' from props
+// 🔴 Sahi destructuring yahan hai: 'id' add kiya gaya hai
 const ProjectCard = ({ id, title, category, image }: ProjectProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -45,8 +45,8 @@ const ProjectCard = ({ id, title, category, image }: ProjectProps) => {
   };
 
   return (
-    // 2. Wrap the card with Link for dynamic routing
-    <Link href={`/project/${id}`}>
+    // 🔴 'Link' wrap karna zaroori hai navigation ke liye
+    <Link href={`/project/${id}`}> 
       <motion.div
         ref={containerRef}
         onMouseMove={handleMouseMove}
