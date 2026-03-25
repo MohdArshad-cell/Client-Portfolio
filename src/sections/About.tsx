@@ -1,57 +1,91 @@
 "use client";
+import React from "react";
 import { motion } from "framer-motion";
 import { AboutData } from "@/constants";
+import Image from "next/image";
 
 const About = () => {
   return (
-    <section id="about" className="py-32 px-8 bg-[#fafafa]">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
-        
-        {/* Left Side: Image with Border Detail */}
-        <motion.div 
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative"
-        >
-          <div className="aspect-[3/4] overflow-hidden grayscale">
-            <img 
-              src={AboutData.image} 
-              alt="Architect Aman" 
-              className="w-full h-full object-cover" 
-            />
-          </div>
-          {/* Subtle design element */}
-          <div className="absolute -bottom-6 -right-6 w-32 h-32 border-r border-b border-black/10 hidden md:block"></div>
-        </motion.div>
-
-        {/* Right Side: Content */}
+    <section id="about" className="py-20 px-6 md:px-20 bg-white text-black">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
         >
-          <span className="text-[10px] uppercase tracking-[0.4em] text-gray-400">Our Philosophy</span>
-          <h2 className="text-4xl md:text-5xl font-light uppercase tracking-tighter mt-4 mb-8">
-            {AboutData.title}
+          <span className="text-sm uppercase tracking-[0.3em] text-gray-400 block mb-2">
+            01 / Who We Are
+          </span>
+          <h2 className="text-4xl md:text-6xl font-light tracking-tight">
+            About <span className="font-medium">Aman Architects</span>
           </h2>
-          <p className="text-gray-600 leading-relaxed mb-12 max-w-md">
-            {AboutData.description}
-          </p>
-
-          {/* Stats Grid */}
-          <div className="grid grid-cols-3 gap-8 pt-8 border-t border-gray-200">
-            {AboutData.stats.map((stat, index) => (
-              <div key={index}>
-                <h4 className="text-2xl font-light tracking-tighter">{stat.value}</h4>
-                <p className="text-[10px] uppercase tracking-widest text-gray-400 mt-1">{stat.label}</p>
-              </div>
-            ))}
-          </div>
         </motion.div>
 
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          {/* Left Side: Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-8"
+          >
+            <h3 className="text-2xl md:text-3xl font-light leading-relaxed">
+              {AboutData.title}
+            </h3>
+            <p className="text-gray-600 leading-relaxed text-lg">
+              {AboutData.description}
+            </p>
+
+            {/* Stats Grid */}
+            <div className="grid grid-cols-2 gap-8 pt-10 border-t border-gray-100">
+              <div>
+                <h4 className="text-4xl md:text-5xl font-medium mb-2">
+                  {AboutData.stats.experience}+
+                </h4>
+                <p className="text-sm uppercase tracking-widest text-gray-400">
+                  Years of Expertise
+                </p>
+              </div>
+              <div>
+                <h4 className="text-4xl md:text-5xl font-medium mb-2">
+                  {AboutData.stats.projects}+
+                </h4>
+                <p className="text-sm uppercase tracking-widest text-gray-400">
+                  Projects Delivered
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Side: Architectural Imagery */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative h-[500px] w-full bg-gray-100 overflow-hidden group"
+          >
+            <Image
+              src="/hero-arch.jpg" // Ensure this image exists in your public folder
+              alt="Architectural Workspace"
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Minimalist Overlay Badge */}
+            <div className="absolute bottom-0 right-0 bg-black text-white p-8 md:p-12 max-w-[250px]">
+              <p className="text-xs uppercase tracking-[0.2em] opacity-60 mb-2">
+                Our Mission
+              </p>
+              <p className="text-sm font-light italic leading-relaxed">
+                "Transforming spaces into timeless experiences through precision and art."
+              </p>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
