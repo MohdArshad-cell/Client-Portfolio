@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { NavLinks, SiteConfig } from "@/constants";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Link from "next/link";
+import Magnetic from "./Magnetic";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +15,11 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Safe splitting logic to prevent "cannot read property split of undefined"
+  const brandName = SiteConfig?.name || "Aman Architects";
+  const firstName = brandName.split(' ')[0];
+  const lastName = brandName.split(' ')[1] || "";
 
   return (
     <nav 
@@ -26,8 +32,8 @@ const Navbar = () => {
         {/* Brand Logo */}
         <Link href="/" className="group flex flex-col">
           <span className={`text-xl font-medium tracking-tighter uppercase transition-colors duration-300 ${scrolled ? "text-black" : "text-white"}`}>
-            {(SiteConfig?.name || "Aman Architects").split(' ')[0]}
-            <span className="font-light italic text-gray-400"> {SiteConfig.name.split(' ')[1]}</span>
+            {firstName}
+            <span className="font-light italic text-gray-400"> {lastName}</span>
           </span>
           <span className="text-[7px] uppercase tracking-[0.4em] opacity-40 text-gray-500 group-hover:tracking-[0.6em] transition-all">
             Architectural Studio
@@ -36,25 +42,29 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-10">
-          {NavLinks.map((link) => (
-            <Link 
-              key={link.name} 
-              href={link.href}
-              className={`text-[10px] uppercase tracking-[0.2em] font-medium transition-all hover:opacity-50 ${
-                scrolled ? "text-black" : "text-white"
+          {(NavLinks || []).map((link) => (
+            <Magnetic key={link.name}>
+              <Link 
+                href={link.href}
+                className={`text-[10px] uppercase tracking-[0.2em] font-medium transition-all hover:opacity-50 px-2 py-1 ${
+                  scrolled ? "text-black" : "text-white"
+                }`}
+              >
+                {link.name}
+              </Link>
+            </Magnetic>
+          ))}
+          
+          <Magnetic>
+            <a 
+              href="#contact" 
+              className={`px-6 py-2 border text-[9px] uppercase tracking-widest transition-all ${
+                scrolled ? "border-black text-black hover:bg-black hover:text-white" : "border-white/20 text-white hover:bg-white hover:text-black"
               }`}
             >
-              {link.name}
-            </Link>
-          ))}
-          <a 
-            href="#contact" 
-            className={`px-6 py-2 border text-[9px] uppercase tracking-widest transition-all ${
-              scrolled ? "border-black text-black hover:bg-black hover:text-white" : "border-white/20 text-white hover:bg-white hover:text-black"
-            }`}
-          >
-            Start Project
-          </a>
+              Start Project
+            </a>
+          </Magnetic>
         </div>
 
         {/* Mobile Toggle */}
@@ -80,7 +90,7 @@ const Navbar = () => {
               <X size={32} />
             </button>
             <div className="flex flex-col gap-8">
-              {NavLinks.map((link, i) => (
+              {(NavLinks || []).map((link, i) => (
                 <motion.div
                   key={link.name}
                   initial={{ opacity: 0, y: 20 }}
