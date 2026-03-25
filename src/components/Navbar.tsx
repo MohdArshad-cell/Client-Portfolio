@@ -1,116 +1,114 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { NavLinks, SiteConfig } from "@/constants";
-import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import Link from "next/link";
-import Magnetic from "./Magnetic";
+import { SiteConfig } from "@/constants";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { scrollY } = useScroll();
+  const [hidden, setHidden] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [time, setTime] = useState("");
 
+  // 1. Live System Clock Logic
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const timer = setInterval(() => {
+      const now = new Date();
+      setTime(now.toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' }));
+    }, 1000);
+    return () => clearInterval(timer);
   }, []);
 
-  // Safe splitting logic to prevent "cannot read property split of undefined"
-  const brandName = SiteConfig?.name || "Aman Architects";
-  const firstName = brandName.split(' ')[0];
-  const lastName = brandName.split(' ')[1] || "";
+  // 2. Smart Hide Logic: Niche scroll pe hide, upar pe show
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() ?? 0;
+    if (latest > previous && latest > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+    setScrolled(latest > 50);
+  });
+
+  const navLinks = [
+    { name: "Works", href: "#projects", id: "01" },
+    { name: "Identity", href: "#about", id: "02" },
+    { name: "Expertise", href: "#services", id: "03" },
+    { name: "Contact", href: "#contact", id: "04" },
+  ];
 
   return (
-    <nav 
-      className={`fixed top-0 w-full z-[100] transition-all duration-500 ${
-        scrolled ? "py-4 bg-white/80 backdrop-blur-md border-b border-gray-100" : "py-8 bg-transparent"
+    <motion.nav
+      variants={{
+        visible: { y: 0 },
+        hidden: { y: "-100%" },
+      }}
+      animate={hidden ? "hidden" : "visible"}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed top-0 w-full z-[100] transition-colors duration-500 ${
+        scrolled ? "bg-black/80 backdrop-blur-md border-b border-white/5" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+      <div className="max-w-[1800px] mx-auto px-6 md:px-12 h-20 md:h-24 flex justify-between items-center">
         
-        {/* Brand Logo */}
-        <Link href="/" className="group flex flex-col">
-          <span className={`text-xl font-medium tracking-tighter uppercase transition-colors duration-300 ${scrolled ? "text-black" : "text-white"}`}>
-            {firstName}
-            <span className="font-light italic text-gray-400"> {lastName}</span>
-          </span>
-          <span className="text-[7px] uppercase tracking-[0.4em] opacity-40 text-gray-500 group-hover:tracking-[0.6em] transition-all">
-            Architectural Studio
-          </span>
-        </Link>
+        {/* LEFT: Branding & System Status */}
+        <div className="flex items-center gap-10">
+          <Link href="/" className="group">
+            <div className="flex items-baseline gap-1">
+              <span className="text-white text-xl font-light tracking-[0.4em] uppercase group-hover:italic transition-all">
+                {SiteConfig.name.split(' ')[0]}
+              </span>
+              <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
+            </div>
+          </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-10">
-          {(NavLinks || []).map((link) => (
-            <Magnetic key={link.name}>
-              <Link 
-                href={link.href}
-                className={`text-[10px] uppercase tracking-[0.2em] font-medium transition-all hover:opacity-50 px-2 py-1 ${
-                  scrolled ? "text-black" : "text-white"
-                }`}
-              >
-                {link.name}
-              </Link>
-            </Magnetic>
-          ))}
-          
-          <Magnetic>
-            <a 
-              href="#contact" 
-              className={`px-6 py-2 border text-[9px] uppercase tracking-widest transition-all ${
-                scrolled ? "border-black text-black hover:bg-black hover:text-white" : "border-white/20 text-white hover:bg-white hover:text-black"
-              }`}
-            >
-              Start Project
-            </a>
-          </Magnetic>
+          {/* HUD STATUS: Visible on Desktop */}
+          <div className="hidden lg:flex flex-col border-l border-white/10 pl-6 gap-0.5">
+            <span className="text-[7px] text-white/30 uppercase tracking-[0.5em]">System_Time</span>
+            <span className="text-[10px] text-white/60 font-mono tracking-tighter">{time} UTC+5:30</span>
+          </div>
         </div>
 
-        {/* Mobile Toggle */}
-        <button 
-          onClick={() => setIsOpen(!isOpen)}
-          className={`md:hidden p-2 transition-colors ${scrolled ? "text-black" : "text-white"}`}
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* CENTER: Staggered Nav Links */}
+        <div className="hidden md:flex items-center gap-16">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className="group flex items-start gap-1 cursor-none"
+            >
+              <span className="text-[7px] text-white/20 font-mono mt-1 group-hover:text-white transition-colors">
+                {link.id}
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.4em] text-white/40 group-hover:text-white transition-colors relative">
+                {link.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full" />
+              </span>
+            </a>
+          ))}
+        </div>
+
+        {/* RIGHT: Inquiry & Menu Toggle */}
+        <div className="flex items-center gap-8">
+          <a 
+            href="#contact"
+            className="hidden sm:block px-8 py-2.5 bg-white text-black text-[9px] uppercase tracking-[0.4em] font-bold hover:bg-white/90 transition-all rounded-sm overflow-hidden relative group"
+          >
+            <span className="relative z-10">Inquire_Now</span>
+          </a>
+
+          {/* MOBILE BURGER: Industrial Style */}
+          <div className="flex flex-col gap-1.5 cursor-pointer group p-2">
+            <div className="w-8 h-[1px] bg-white group-hover:w-5 transition-all origin-right" />
+            <div className="w-5 h-[1px] bg-white group-hover:w-8 transition-all origin-right" />
+            <div className="w-8 h-[1px] bg-white/40 group-hover:bg-white transition-all origin-right" />
+          </div>
+        </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed inset-0 h-screen bg-black z-[110] flex flex-col p-12 justify-center"
-          >
-            <button onClick={() => setIsOpen(false)} className="absolute top-8 right-8 text-white">
-              <X size={32} />
-            </button>
-            <div className="flex flex-col gap-8">
-              {(NavLinks || []).map((link, i) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                >
-                  <Link 
-                    href={link.href} 
-                    onClick={() => setIsOpen(false)}
-                    className="text-5xl text-white font-light uppercase tracking-tighter hover:italic transition-all"
-                  >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+      {/* TOP SCANLINE EFFECT: Very subtle technical detail */}
+      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+    </motion.nav>
   );
 };
 
