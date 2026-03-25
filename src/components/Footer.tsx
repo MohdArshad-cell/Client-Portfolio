@@ -2,10 +2,10 @@
 import React from "react";
 import { SiteConfig, ContactData, NavLinks, SocialLinks } from "@/constants";
 import Link from "next/link";
-import { ArrowUpRight, Github, Instagram, Linkedin } from "lucide-react";
+// Use Fa6 for maximum stability
+import { FaGithub, FaInstagram, FaLinkedinIn, FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 const Footer = () => {
-  // Hardcoding dates is for amateurs. Use dynamic sync.
   const currentYear = new Date().getFullYear(); 
 
   return (
@@ -19,14 +19,15 @@ const Footer = () => {
               <span className="text-white/20">The Future.</span>
             </h2>
             <p className="text-white/40 max-w-sm text-sm uppercase tracking-widest leading-relaxed">
-              {SiteConfig.tagline}
+              {SiteConfig?.tagline || "Designing Spaces, Defining Lifestyles."}
             </p>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-12">
             <div className="flex flex-col gap-4">
               <span className="text-[10px] uppercase tracking-[0.4em] text-white/20">Sitemap</span>
-              {NavLinks.map(link => (
+              {/* Defensive mapping */}
+              {(NavLinks || []).map(link => (
                 <Link key={link.name} href={link.href} className="text-xs uppercase tracking-widest hover:text-white/60 transition-colors">
                   {link.name}
                 </Link>
@@ -35,7 +36,7 @@ const Footer = () => {
 
             <div className="flex flex-col gap-4">
               <span className="text-[10px] uppercase tracking-[0.4em] text-white/20">Uplink</span>
-              {SocialLinks.map((link) => (
+              {(SocialLinks || []).map((link) => (
                 <a 
                   key={link.platform} 
                   href={link.url} 
@@ -43,7 +44,7 @@ const Footer = () => {
                   className="text-xs uppercase tracking-widest hover:text-white/60 transition-colors flex items-center gap-1 group"
                 >
                   {link.platform}
-                  <ArrowUpRight size={10} className="opacity-0 group-hover:opacity-100 transition-all" />
+                  <FaArrowUpRightFromSquare size={10} className="opacity-0 group-hover:opacity-100 transition-all" />
                 </a>
               ))}
             </div>
@@ -51,7 +52,7 @@ const Footer = () => {
             <div className="flex flex-col gap-4">
               <span className="text-[10px] uppercase tracking-[0.4em] text-white/20">Location</span>
               <p className="text-xs uppercase tracking-widest leading-relaxed text-white/40">
-                {ContactData.address}
+                {ContactData?.address}
               </p>
             </div>
           </div>
@@ -59,12 +60,12 @@ const Footer = () => {
 
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-[10px] uppercase tracking-[0.5em] text-white/20">
-            © {currentYear} {SiteConfig.name} — All Rights Reserved
+            © {currentYear} {SiteConfig?.name} — All Rights Reserved
           </p>
           <div className="flex items-center gap-6 text-white/20">
-             <Github size={16} className="hover:text-white transition-colors cursor-pointer" />
-             <Instagram size={16} className="hover:text-white transition-colors cursor-pointer" />
-             <Linkedin size={16} className="hover:text-white transition-colors cursor-pointer" />
+             <a href="https://github.com/MohdArshad-cell" target="_blank"><FaGithub size={18} className="hover:text-white transition-colors" /></a>
+             <a href="#" target="_blank"><FaInstagram size={18} className="hover:text-white transition-colors" /></a>
+             <a href="https://linkedin.com/in/mohd-arshad-156227314" target="_blank"><FaLinkedinIn size={18} className="hover:text-white transition-colors" /></a>
           </div>
         </div>
       </div>
