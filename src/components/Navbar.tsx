@@ -26,7 +26,7 @@ const Navbar = () => {
         {/* Brand Logo */}
         <Link href="/" className="group flex flex-col">
           <span className={`text-xl font-medium tracking-tighter uppercase transition-colors duration-300 ${scrolled ? "text-black" : "text-white"}`}>
-            {SiteConfig.name.split(' ')[0]}
+            {(SiteConfig?.name || "Aman Architects").split(' ')[0]}
             <span className="font-light italic text-gray-400"> {SiteConfig.name.split(' ')[1]}</span>
           </span>
           <span className="text-[7px] uppercase tracking-[0.4em] opacity-40 text-gray-500 group-hover:tracking-[0.6em] transition-all">
