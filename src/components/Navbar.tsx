@@ -20,11 +20,8 @@ const Navbar = () => {
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
-    if (latest > previous && latest > 150) {
-      setHidden(true);
-    } else {
-      setHidden(false);
-    }
+    if (latest > previous && latest > 150) setHidden(true);
+    else setHidden(false);
     setScrolled(latest > 50);
   });
 
@@ -39,63 +36,55 @@ const Navbar = () => {
     <motion.nav
       variants={{ visible: { y: 0 }, hidden: { y: "-100%" } }}
       animate={hidden ? "hidden" : "visible"}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 w-full z-[100] transition-all duration-500 ${
         scrolled ? "bg-black/90 backdrop-blur-md border-b border-white/5" : "bg-transparent"
       }`}
     >
-      {/* Container with rigid max-width for alignment */}
-      <div className="max-w-[1800px] mx-auto px-6 md:px-12 h-20 md:h-28 grid grid-cols-3 items-center">
+      {/* 3-Column Grid with fixed height for perfect centering */}
+      <div className="max-w-[1800px] mx-auto px-6 md:px-12 h-24 flex items-center justify-between">
         
-        {/* COLUMN 1: LEFT (Logo & Status) */}
-        <div className="flex items-center gap-8">
-          <Link href="/" className="group flex items-baseline gap-2">
-            <span className="text-white text-xl font-light tracking-[0.4em] uppercase group-hover:italic transition-all">
+        {/* LEFT: Branding */}
+        <div className="flex items-center gap-6 flex-1">
+          <Link href="/" className="group flex items-center gap-3">
+            <span className="text-white text-2xl font-light tracking-[0.4em] uppercase group-hover:italic transition-all">
               {SiteConfig.name.split(' ')[0]}
             </span>
-            <span className="w-1.5 h-1.5 bg-white rounded-full animate-pulse" />
+            <div className="h-6 w-[1px] bg-white/10 hidden lg:block" />
+            <div className="hidden lg:flex flex-col">
+              <span className="text-[7px] text-white/20 uppercase tracking-[0.5em]">SYSTEM_TIME</span>
+              <span className="text-[9px] text-white/50 font-mono">{time} UTC+5:30</span>
+            </div>
           </Link>
-
-          <div className="hidden xl:flex flex-col border-l border-white/10 pl-6 gap-0.5">
-            <span className="text-[7px] text-white/20 uppercase tracking-[0.5em]">System_Time</span>
-            <span className="text-[10px] text-white/50 font-mono tracking-tighter">{time} UTC+5:30</span>
-          </div>
         </div>
 
-        {/* COLUMN 2: CENTER (Navigation) */}
-        <div className="hidden md:flex justify-center items-center gap-12 lg:gap-20">
+        {/* CENTER: Navigation (Locked Center) */}
+        <div className="hidden md:flex items-center gap-12 lg:gap-16">
           {navLinks.map((link) => (
             <a key={link.name} href={link.href} className="group flex flex-col items-center gap-1">
               <span className="text-[7px] text-white/20 font-mono group-hover:text-white transition-colors">
                 {link.id}
               </span>
-              <span className="text-[10px] uppercase tracking-[0.4em] text-white/40 group-hover:text-white transition-colors relative">
+              <span className="text-[10px] uppercase tracking-[0.5em] text-white/40 group-hover:text-white transition-all relative">
                 {link.name}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full" />
               </span>
             </a>
           ))}
         </div>
 
-        {/* COLUMN 3: RIGHT (CTA & Menu) */}
-        <div className="flex justify-end items-center gap-8">
+        {/* RIGHT: CTA */}
+        <div className="flex justify-end items-center gap-8 flex-1">
           <a 
             href="#contact"
-            className="hidden sm:block px-10 py-3 bg-white text-black text-[9px] uppercase tracking-[0.4em] font-bold hover:invert transition-all rounded-sm"
+            className="hidden sm:block px-8 py-3 bg-white text-black text-[9px] uppercase tracking-[0.5em] font-bold hover:bg-black hover:text-white border border-white transition-all duration-500"
           >
-            Inquire_Now
+            INQUIRE_NOW
           </a>
-
-          {/* Industrial Burger Menu */}
           <div className="flex flex-col gap-1.5 cursor-pointer group">
             <div className="w-8 h-[1px] bg-white group-hover:w-5 transition-all" />
             <div className="w-5 h-[1px] bg-white group-hover:w-8 transition-all" />
           </div>
         </div>
       </div>
-
-      {/* Subtle Scanline Bottom Detail */}
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent" />
     </motion.nav>
   );
 };

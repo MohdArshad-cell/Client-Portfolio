@@ -87,57 +87,49 @@ const Hero = () => {
       </motion.div>
 
       {/* CONTENT LAYER: Refined Kinetic Typography with 3D Parallax */}
-      <motion.div 
-        style={{ y: textY, rotateX, rotateY, transformStyle: "preserve-3d" }}
-        className="relative z-30 text-center px-6"
-      >
-        <div className="overflow-hidden mb-6">
-          <motion.p 
-            initial={{ y: 20, opacity: 0 }}
-            animate={isMounted ? { y: 0, opacity: 1 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-white/40 uppercase text-[9px] tracking-[0.8em] font-light"
-          >
-            Studio — {SiteConfig.name}
-          </motion.p>
-        </div>
-        
-        <div className="flex flex-col items-center gap-1">
-          {taglineLines.map((line, i) => (
-            <div key={i} className="overflow-hidden h-[50px] md:h-[90px] lg:h-[110px]">
-              <motion.h1 
-                initial={{ y: "100%" }}
-                animate={isMounted ? { y: 0 } : {}}
-                transition={{ 
-                  duration: 1.5, 
-                  ease: [0.16, 1, 0.3, 1],
-                  delay: 0.3 + (i * 0.15) 
-                }}
-                className={`text-5xl md:text-8xl lg:text-9xl text-white uppercase font-light tracking-tighter leading-[1.05] ${
-                  i === 1 ? 'text-white/20 italic' : '' // 'elite' fade and italic for 'SPACES.'
-                }`}
-              >
-                {line}
-              </motion.h1>
-            </div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={isMounted ? { opacity: 1 } : {}}
-          transition={{ duration: 1, delay: 1.8 }}
-          className="mt-20"
+      {/* 4. CONTENT LAYER: Refined & Resized Typography */}
+<motion.div 
+  style={{ y: textY, rotateX, rotateY, transformStyle: "preserve-3d" }}
+  className="relative z-30 text-center px-6"
+>
+  {/* Maine yahan se wo extra branding text hata diya hai jo Navbar ke niche latak raha tha */}
+  
+  <div className="flex flex-col items-center gap-2 md:gap-4">
+    {taglineLines.map((line, i) => (
+      <div key={i} className="overflow-hidden h-[40px] md:h-[65px] lg:h-[85px]">
+        <motion.h1 
+          initial={{ y: "100%" }}
+          animate={isMounted ? { y: 0 } : {}}
+          transition={{ 
+            duration: 1.5, 
+            ease: [0.16, 1, 0.3, 1],
+            delay: 0.3 + (i * 0.15) 
+          }}
+          className={`text-4xl md:text-6xl lg:text-7xl text-white uppercase font-light tracking-tighter leading-none ${
+            i === 1 ? 'text-white/20 italic font-extralight' : '' // Middle line styling
+          }`}
         >
-          <a 
-            href="#projects" 
-            className="group relative inline-flex items-center justify-center px-16 py-5 border border-white/5 rounded-full text-white text-[10px] uppercase tracking-[0.5em] transition-all duration-700 hover:border-white/40 overflow-hidden"
-          >
-            <span className="relative z-10 mix-blend-difference">SCROLL_TO_EXPLORE // MMXXVI</span>
-            <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-          </a>
-        </motion.div>
-      </motion.div>
+          {line}
+        </motion.h1>
+      </div>
+    ))}
+  </div>
+
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={isMounted ? { opacity: 1 } : {}}
+    transition={{ duration: 1, delay: 1.8 }}
+    className="mt-16"
+  >
+    <a 
+      href="#projects" 
+      className="group relative inline-flex items-center justify-center px-12 py-4 border border-white/5 rounded-full text-white text-[9px] uppercase tracking-[0.5em] transition-all duration-700 hover:border-white/40 overflow-hidden"
+    >
+      <span className="relative z-10 mix-blend-difference">SCROLL_TO_EXPLORE // MMXXVI</span>
+      <div className="absolute inset-0 bg-white scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+    </a>
+  </motion.div>
+</motion.div>
 
       {/* SYSTEM HUD UI: Minimalist System Status Readout */}
       <div className="absolute bottom-12 left-12 hidden lg:flex flex-col gap-1 z-40">
