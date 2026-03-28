@@ -137,7 +137,7 @@ const Footer = () => {
         {/* BOTTOM: THE LEGAL HUD */}
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[9px] font-mono text-white/20 tracking-[0.4em]">
           <div className="flex flex-col md:flex-row items-center gap-8">
-            <p>© {currentYear} {SiteConfig.name.toUpperCase()} // ALL_RIGHTS_RESERVED</p>
+            <p>© {currentYear} {SiteConfig.name.toUpperCase()}ALL_RIGHTS_RESERVED</p>
             <span className="hidden md:block h-3 w-[1px] bg-white/10" />
             <p className="hover:text-white transition-colors cursor-crosshair">DESIGNED_BY_ARSHAD_TERMINAL</p>
           </div>
